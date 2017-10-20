@@ -1,11 +1,14 @@
 package kata3;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 
@@ -33,10 +36,19 @@ class HistogramDisplay extends ApplicationFrame{
                                                          "Número de emails",
                                                          dataSet,
                                                          PlotOrientation.VERTICAL, 
-                                                         false, 
-                                                         rootPaneCheckingEnabled, 
-                                                         rootPaneCheckingEnabled
+                                                         true, 
+                                                         true, 
+                                                         true
         );
+        chart.setBackgroundPaint(Color.YELLOW);
+        CategoryPlot plot = (CategoryPlot) chart.getPlot();
+        plot.setBackgroundPaint(Color.darkGray);
+        
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+        renderer.setSeriesPaint(0, Color.green);
+        renderer.setSeriesPaint(1, Color.green);
+        renderer.setDrawBarOutline(false);
+        renderer.setShadowVisible(false);
         return chart;
     }
     
